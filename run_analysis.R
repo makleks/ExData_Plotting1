@@ -26,6 +26,7 @@ x_train <- cbind(sub_train,y_train,x_train)   #add the matching training subject
 x_test <- cbind(sub_test,y_test,x_test)       #add the matching test subject column to the dataframe
 x_train <- rename(x_train, c('y_train'='activity'))
 x_test <- rename(x_test, c('y_test'='activity'))
+x_merged <- rbind(x_train, x_test)
 
 x_mean_std <- select(x_merged,V1,activity,contains('mean'),contains('std')) #Extract only the means and standard deviations from the x_merged dataframe
 x_mean_by_subject <- summarise_each(group_by(x_mean_std,V1,activity), funs(mean))
